@@ -121,29 +121,31 @@ if (typewriterElement) {
 // ===== Formulaire de contact =====
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Animation de succès
-    const btn = contactForm.querySelector('.btn');
-    const originalText = btn.textContent;
-    btn.textContent = 'Message envoyé !';
-    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-    
-    setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        contactForm.reset();
-    }, 3000);
-    
-    // Ici vous pouvez ajouter l'envoi réel du formulaire
-    console.log('Form submitted:', { name, email, subject, message });
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Animation de succès
+        const btn = contactForm.querySelector('.btn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Message envoyé !';
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            contactForm.reset();
+        }, 3000);
+        
+        // Ici vous pouvez ajouter l'envoi réel du formulaire
+        console.log('Form submitted:', { name, email, subject, message });
+    });
+}
 
 // ===== Smooth scroll pour les ancres =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
