@@ -203,6 +203,27 @@ document.querySelectorAll('a, button, .btn').forEach(el => {
     });
 });
 
+// ===== Toggle détails des projets =====
+document.querySelectorAll('.btn-toggle-details').forEach(button => {
+    button.addEventListener('click', function() {
+        const projectCard = this.closest('.project-card');
+        const projectDetails = projectCard.querySelector('.project-details');
+        const toggleText = this.querySelector('.toggle-text');
+        
+        projectCard.classList.toggle('expanded');
+        
+        if (projectCard.classList.contains('expanded')) {
+            projectDetails.style.display = 'block';
+            toggleText.textContent = 'Masquer détails';
+        } else {
+            setTimeout(() => {
+                projectDetails.style.display = 'none';
+            }, 300);
+            toggleText.textContent = 'Voir détails';
+        }
+    });
+});
+
 // ===== Initialisation =====
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();

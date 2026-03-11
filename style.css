@@ -701,7 +701,7 @@ ul {
     font-size: 0.9rem;
 }
 
-/* ===== Projets ===== */
+/* ===== Applications Mobile ===== */
 .projects-grid {
     display: grid;
     gap: 3rem;
@@ -721,9 +721,59 @@ ul {
                 var(--gradient) border-box;
 }
 
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow);
+.project-compact {
+    position: relative;
+}
+
+.tech-tags-compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-toggle-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.project-card.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.project-details {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.project-card.expanded .project-details {
+    max-height: 5000px;
+    opacity: 1;
+    margin-top: 2rem;
 }
 
 .project-header {
