@@ -346,18 +346,17 @@ ul {
 }
 
 .profile-image {
-    width: 120%;
-    height: 120%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    object-position: 60% 25%;
+    object-position: 55% 35%;
     box-shadow: var(--shadow);
     border: 4px solid transparent;
     background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
                 var(--gradient) border-box;
     transition: all 0.4s ease;
     filter: grayscale(20%) contrast(1.1);
-    transform: scale(1.3);
 }
 
 .profile-image:hover {
