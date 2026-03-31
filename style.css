@@ -350,7 +350,7 @@ ul {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    object-position: 55% 35%;
+    object-position: 55% 4%;
     box-shadow: var(--shadow);
     border: 4px solid transparent;
     background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
