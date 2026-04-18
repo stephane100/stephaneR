@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Stephane RAKOTONIRINA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.5;
+            font-size: 11px;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            min-height: 297mm;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #1a1a2e;
+            color: #ffffff;
+            padding: 30px 20px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 55% 4%;
+            border: 3px solid #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .profile-title {
+            font-size: 10px;
+            color: #b0b0c0;
+            margin-top: 4px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #00d4ff;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 9.5px;
+            color: #d0d0e0;
+        }
+
+        .contact-icon {
+            flex-shrink: 0;
+            width: 14px;
+            text-align: center;
+        }
+
+        .skill-bar-container {
+            margin-bottom: 8px;
+        }
+
+        .skill-label {
+            font-size: 9.5px;
+            color: #d0d0e0;
+            margin-bottom: 3px;
+        }
+
+        .skill-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #9333ea);
+            border-radius: 2px;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9.5px;
+            color: #d0d0e0;
+            margin-bottom: 5px;
+        }
+
+        .lang-level {
+            color: #00d4ff;
+            font-size: 8.5px;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .interest-tag {
+            font-size: 8.5px;
+            padding: 3px 8px;
+            background: rgba(0, 212, 255, 0.15);
+            border-radius: 10px;
+            color: #00d4ff;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 25px;
+        }
+
+        .section {
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1a1a2e;
+            border-bottom: 2px solid #00d4ff;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: #00d4ff;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+
+        .exp-role {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .exp-date {
+            font-size: 9px;
+            color: #00d4ff;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .exp-company {
+            font-size: 10px;
+            color: #555;
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+
+        .exp-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-list li {
+            font-size: 9.5px;
+            color: #444;
+            padding-left: 12px;
+            position: relative;
+            margin-bottom: 2px;
+            line-height: 1.4;
+        }
+
+        .exp-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 10px;
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-degree {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .edu-date {
+            font-size: 9px;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .edu-school {
+            font-size: 9.5px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .edu-detail {
+            font-size: 9px;
+            color: #777;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .project-tech {
+            font-size: 8.5px;
+            color: #00d4ff;
+        }
+
+        .project-desc {
+            font-size: 9.5px;
+            color: #444;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container {
+                min-height: auto;
+            }
+
+            .sidebar {
+                background: #1a1a2e !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        /* Download button overlay */
+        .download-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .download-btn {
+            padding: 8px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pdf {
+            background: linear-gradient(135deg, #00d4ff, #9333ea);
+            color: white;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: #00d4ff;
+            border: 1px solid #00d4ff;
+        }
+
+        .btn-back:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        @media print {
+            .download-bar {
+                display: none !important;
+            }
+            body {
+                padding-top: 0;
+            }
+        }
+
+        @media screen {
+            body {
+                padding-top: 55px;
+                background: #e0e0e0;
+            }
+            .cv-container {
+                box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="download-bar no-print">
+        <a href="index.html" class="download-btn btn-back">← Retour au Portfolio</a>
+        <button onclick="window.print()" class="download-btn btn-pdf">📄 Télécharger en PDF</button>
+    </div>
+
+    <div class="cv-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <img src="image/profil.jpeg" alt="Stephane RAKOTONIRINA" class="profile-photo">
+                <div class="profile-name">Stephane<br>RAKOTONIRINA</div>
+                <div class="profile-title">Développeur Full Stack<br>AI & Automation Specialist</div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Contact</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Antananarivo, Madagascar</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>+261 34 23 519 96</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>Rtstephane10@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span>linkedin.com/in/rakotonirinastephane</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🌐</span>
+                    <span>stephane100.github.io/stephaneR</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Compétences</h3>
+                <div class="skill-bar-container">
+                    <div class="skill-label">Python</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">PHP / Laravel</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">JavaScript / VueJS</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">Swift / SwiftUI</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">Flutter</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">Google Cloud / Vertex AI</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">MySQL / MariaDB</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-label">OpenAI GPT-4 / IA</div>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Langues</h3>
+                <div class="lang-item">
+                    <span>Français</span>
+                    <span class="lang-level">Opérationnel</span>
+                </div>
+                <div class="lang-item">
+                    <span>Anglais</span>
+                    <span class="lang-level">Intermédiaire</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Centres d'intérêt</h3>
+                <div class="interest-tags">
+                    <span class="interest-tag">Football</span>
+                    <span class="interest-tag">Musique</span>
+                    <span class="interest-tag">Mathématique</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="section">
+                <h2 class="section-title">Expérience <span>Professionnelle</span></h2>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Développeur Cloud</span>
+                        <span class="exp-date">06/2024 - Actuel</span>
+                    </div>
+                    <div class="exp-company">Bourbon Digital - La Réunion (CDI)</div>
+                    <ul class="exp-list">
+                        <li>Analyse des besoins clients, étude de faisabilité et cahier des charges</li>
+                        <li>Participation à des projets de transformation digitale</li>
+                        <li>Gestion et résolution des tickets d'incidents et demandes de changement</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Automatisation SEO</span>
+                        <span class="exp-date">01/2025 - Actuel</span>
+                    </div>
+                    <div class="exp-company">Freelance</div>
+                    <ul class="exp-list">
+                        <li>Collecte automatique de données SEO via workflows n8n</li>
+                        <li>Automatisation de la génération de rapports SEO</li>
+                        <li>Suivi automatisé des positions des mots-clés stratégiques</li>
+                        <li>Automatisation du maillage interne et netlinking</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Intégrateur AI</span>
+                        <span class="exp-date">01/2024 - Actuel</span>
+                    </div>
+                    <div class="exp-company">Bourbon Digital - La Réunion (CDI)</div>
+                    <ul class="exp-list">
+                        <li>Intégration de solutions IA avec Google Cloud (Vertex AI, Gemini, AI Studio)</li>
+                        <li>Développement d'assistants intelligents et automatisation de tâches</li>
+                        <li>Création d'agents conversationnels avec Vertex AI Search & Conversation</li>
+                        <li>Mise en place de pipelines de données (Dataflow, BigQuery)</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Développeur Fullstack</span>
+                        <span class="exp-date">05/2021 - 02/2022</span>
+                    </div>
+                    <div class="exp-company">Freelance</div>
+                    <ul class="exp-list">
+                        <li>Création d'un site e-commerce (Laravel, VueJS, Python, Flutter)</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Développeur Fullstack</span>
+                        <span class="exp-date">01/2020 - 12/2020</span>
+                    </div>
+                    <div class="exp-company">Nogae Groupe - Antananarivo, Madagascar</div>
+                    <ul class="exp-list">
+                        <li>Application web de plan 2D et avant-projet de construction</li>
+                        <li>Application mobile/web de commande de nourriture (Flutter, Vue.js, Laravel)</li>
+                        <li>Intégration de paiements en ligne et géolocalisation</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Développeur Intranet</span>
+                        <span class="exp-date">07/2019 - 12/2019</span>
+                    </div>
+                    <div class="exp-company">UPNNC/SSecalina/ONN - Antananarivo</div>
+                    <ul class="exp-list">
+                        <li>Création d'un INTRANET (PHP, Laravel, VueJS, MariaDB)</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Co-Founder & Développeur - Profily</span>
+                        <span class="exp-date">01/2018 - 12/2018</span>
+                    </div>
+                    <div class="exp-company">Freelance - Antananarivo</div>
+                    <ul class="exp-list">
+                        <li>Réseau social semi-professionnel (Flutter)</li>
+                        <li>Logiciel de partage de données P2P (Python, Stéganographie)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><span>Formation</span></h2>
+
+                <div class="edu-item">
+                    <div class="edu-header">
+                        <span class="edu-degree">Informatique Multimédia</span>
+                        <span class="edu-date">09/2021 - 02/2022</span>
+                    </div>
+                    <div class="edu-school">Institut Supérieur Polytechnique de Madagascar</div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-header">
+                        <span class="edu-degree">Licence en Informatique Multimédia</span>
+                        <span class="edu-date">2020</span>
+                    </div>
+                    <div class="edu-school">Institut Supérieur Polytechnique de Madagascar</div>
+                    <div class="edu-detail">Mention Bien</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><span>Projets</span> Personnels</h2>
+
+                <div class="project-item">
+                    <div class="project-name">Evolya - Application iOS</div>
+                    <div class="project-tech">Swift, SwiftUI, OpenAI GPT-4o, RevenueCat, WidgetKit</div>
+                    <div class="project-desc">Application d'affirmations positives personnalisées par IA. Disponible sur l'App Store.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
