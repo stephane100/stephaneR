@@ -32,7 +32,10 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
     <!-- Particules animées -->
@@ -92,7 +95,10 @@
             <div class="hero-image">
                 <div class="image-container">
                     <div class="image-border"></div>
-                    <img src="image/profil.jpeg" alt="Stephane RAKOTONIRINA - Développeur Full Stack" class="profile-image">
+                    <picture>
+                        <source srcset="image/webp/profil.webp" type="image/webp">
+                        <img src="image/profil.jpeg" alt="Stephane RAKOTONIRINA - Expert IA & Développeur Full Stack" class="profile-image" width="300" height="300">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -237,7 +243,10 @@
                 <div class="project-card featured" data-project="Evolya">
                     <div class="project-compact">
                         <div class="project-header">
-                            <img src="screenShoot/logo.png" alt="Evolya Logo" class="project-logo">
+                            <picture>
+                                <source srcset="screenShoot/webp/logo.webp" type="image/webp">
+                                <img src="screenShoot/logo.png" alt="Evolya Logo" class="project-logo" width="60" height="60" loading="lazy">
+                            </picture>
                             <div class="project-title-group">
                                 <h3>Evolya</h3>
                                 <p class="project-subtitle">Application iOS d'Affirmations Personnalisées</p>
@@ -270,22 +279,40 @@
                     <div class="project-details" style="display: none;">
                         <div class="project-screenshots">
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.49.45.png" alt="Evolya Screenshot 1">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.49.45.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.49.45.png" alt="Evolya Screenshot 1" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.55.28.png" alt="Evolya Screenshot 2">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.55.28.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.55.28.png" alt="Evolya Screenshot 2" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.56.52.png" alt="Evolya Screenshot 3">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.56.52.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.56.52.png" alt="Evolya Screenshot 3" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.03.png" alt="Evolya Screenshot 4">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.03.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.03.png" alt="Evolya Screenshot 4" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.25.png" alt="Evolya Screenshot 5">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.25.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.25.png" alt="Evolya Screenshot 5" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                             <div class="screenshot-container">
-                                <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.54.png" alt="Evolya Screenshot 6">
+                                <picture>
+                                    <source srcset="screenShoot/webp/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.54.webp" type="image/webp">
+                                    <img src="screenShoot/Simulator Screenshot - Iphone 15 Pro Max - 2026-02-21 at 08.57.54.png" alt="Evolya Screenshot 6" width="400" height="865" loading="lazy">
+                                </picture>
                             </div>
                         </div>
                         <div class="project-tech-stack">
@@ -738,7 +765,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     
     <!-- Données structurées JSON-LD pour le SEO -->
     <script type="application/ld+json">
