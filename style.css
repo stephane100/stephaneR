@@ -4,7 +4,7 @@
     --bg-secondary: #12121a;
     --bg-card: #1a1a25;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0b0;
+    --text-secondary: #b0b0c0;
     --accent: #00d4ff;
     --accent-secondary: #7c3aed;
     --gradient: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
@@ -60,6 +60,8 @@ ul {
     border-radius: 50%;
     opacity: 0.3;
     animation: float 15s infinite;
+    will-change: transform, opacity;
+    contain: strict;
 }
 
 @keyframes float {
@@ -77,6 +79,15 @@ ul {
         transform: translateY(-100vh) rotate(720deg);
         opacity: 0;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .particle { display: none; }
 }
 
 /* ===== Navigation ===== */
