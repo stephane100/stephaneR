@@ -85,7 +85,7 @@ document.querySelectorAll('.timeline-item').forEach(item => {
 });
 
 // Observer les cartes et sections
-document.querySelectorAll('.info-card, .skill-category, .education-card, .contact-item').forEach(item => {
+document.querySelectorAll('.info-card, .skill-category, .education-card, .contact-item, .service-card, .project-card, .testimonial-card, .process-step, .value-item').forEach(item => {
     item.classList.add('fade-in');
     observer.observe(item);
 });
@@ -110,12 +110,24 @@ document.querySelectorAll('.skill-category').forEach(category => {
     skillObserver.observe(category);
 });
 
-// ===== Effet de texte typewriter =====
-const typewriterElement = document.querySelector('.typewriter');
-if (typewriterElement) {
-    const text = typewriterElement.textContent;
-    typewriterElement.style.width = 'auto';
-    typewriterElement.style.maxWidth = 'fit-content';
+// ===== Animation des compteurs de stats =====
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.stat-number').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                if (target && !counter.classList.contains('counted')) {
+                    counter.classList.add('counted');
+                    animateCounter(counter, target, 1500);
+                }
+            });
+        }
+    });
+}, { threshold: 0.3 });
+
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) {
+    statsObserver.observe(heroStats);
 }
 
 // ===== Formulaire de contact =====
