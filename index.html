@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="image/webp/profil.webp" type="image/webp" fetchpriority="high">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
@@ -98,7 +99,7 @@
                     <div class="image-border"></div>
                     <picture>
                         <source srcset="image/webp/profil.webp" type="image/webp">
-                        <img src="image/profil.jpeg" alt="Stephane RAKOTONIRINA - Expert IA & Développeur Full Stack" class="profile-image" width="300" height="300">
+                        <img src="image/profil.jpeg" alt="Stephane RAKOTONIRINA - Expert IA & Développeur Full Stack" class="profile-image" width="300" height="300" fetchpriority="high" decoding="async">
                     </picture>
                 </div>
             </div>
