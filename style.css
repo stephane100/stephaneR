@@ -802,17 +802,8 @@ ul {
 }
 
 @media (min-width: 768px) {
-    .projects-grid { grid-template-columns: repeat(4, 1fr); }
-    .project-card { grid-column: span 2; }
-    .project-card.bento-wide { grid-column: span 4; }
-    .project-card.bento-narrow { grid-column: span 2; }
-}
-
-@media (min-width: 1024px) {
-    .projects-grid { grid-template-columns: repeat(6, 1fr); }
-    .project-card { grid-column: span 3; }
-    .project-card.bento-wide { grid-column: span 4; }
-    .project-card.bento-narrow { grid-column: span 2; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card { grid-column: span 1; }
 }
 
 .project-card {
@@ -898,18 +889,6 @@ ul {
     gap: 2rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
-}
-
-/* Layout uniforme pour toutes les cards bento (non-featured) : logo en haut, titre dessous */
-.project-card:not(.featured) .project-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.project-card:not(.featured) .project-title-group {
-    width: 100%;
 }
 
 .project-logo {
