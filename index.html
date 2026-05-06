@@ -238,10 +238,16 @@
         <div class="container">
             <h2 class="section-title">Mes <span class="highlight">Réalisations</span></h2>
             <p class="section-subtitle">Des projets concrets qui ont généré des résultats</p>
+            <div class="project-filters" role="tablist" aria-label="Filtrer les projets par catégorie">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Tous</button>
+                <button class="filter-btn" data-filter="ios" role="tab" aria-selected="false">Apps iOS</button>
+                <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web & E-commerce</button>
+                <button class="filter-btn" data-filter="ia" role="tab" aria-selected="false">IA & Automatisation</button>
+            </div>
             <div class="projects-grid">
 
                 <!-- Projet 1 : Evolya -->
-                <div class="project-card featured" data-project="Evolya">
+                <div class="project-card featured" data-project="Evolya" data-category="ios">
                     <div class="project-compact">
                         <div class="project-header">
                             <picture>
@@ -347,7 +353,7 @@
                 </div>
 
                 <!-- Projet 2 : Looqs -->
-                <div class="project-card featured" data-project="Looqs">
+                <div class="project-card featured" data-project="Looqs" data-category="ios">
                     <div class="project-compact">
                         <div class="project-header">
                             <picture>
@@ -461,7 +467,7 @@
                 </div>
 
                 <!-- Projet 3 : Automatisation SEO -->
-                <div class="project-card">
+                <div class="project-card" data-category="ia">
                     <div class="project-compact">
                         <div class="project-header">
                             <div class="project-icon-placeholder">
@@ -489,8 +495,8 @@
                     </div>
                 </div>
 
-                <!-- Projet 3 : Solutions IA Cloud -->
-                <div class="project-card">
+                <!-- Projet 4 : Solutions IA Cloud -->
+                <div class="project-card" data-category="ia">
                     <div class="project-compact">
                         <div class="project-header">
                             <div class="project-icon-placeholder">
@@ -517,8 +523,8 @@
                     </div>
                 </div>
 
-                <!-- Projet 4 : App Food Delivery -->
-                <div class="project-card">
+                <!-- Projet 5 : App Food Delivery -->
+                <div class="project-card" data-category="web">
                     <div class="project-compact">
                         <div class="project-header">
                             <div class="project-icon-placeholder">
@@ -547,8 +553,8 @@
                     </div>
                 </div>
 
-                <!-- Projet 5 : E-commerce -->
-                <div class="project-card">
+                <!-- Projet 6 : E-commerce -->
+                <div class="project-card" data-category="web">
                     <div class="project-compact">
                         <div class="project-header">
                             <div class="project-icon-placeholder">

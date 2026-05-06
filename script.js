@@ -317,6 +317,32 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
+// ===== Filtrage des projets par catégorie =====
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card[data-category]');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+        });
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+
+        projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+                card.classList.remove('is-hidden');
+            } else {
+                card.classList.add('is-hidden');
+            }
+        });
+    });
+});
+
 // ===== Gestion du thème (pour extension future) =====
 const themeToggle = document.querySelector('.theme-toggle');
 if (themeToggle) {
