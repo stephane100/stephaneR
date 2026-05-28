@@ -871,16 +871,110 @@ ul {
 }
 
 .project-details {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    display: none;
 }
 
-.project-card.expanded .project-details {
-    max-height: 5000px;
-    opacity: 1;
-    margin-top: 2rem;
+/* ===== Modal Projet ===== */
+.project-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.project-modal.open {
+    display: flex;
+    animation: modalFadeIn 0.25s ease;
+}
+
+.project-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.project-modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    max-height: calc(100vh - 4rem);
+    background: var(--bg-card, #131831);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideUp 0.3s ease;
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+}
+
+.project-modal-close:hover {
+    background: var(--accent, #00d4ff);
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.project-modal-body {
+    padding: 2.5rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.project-modal-body .project-details {
+    display: block !important;
+    margin-top: 1.5rem;
+}
+
+.project-modal-body .btn-toggle-details {
+    display: none;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .project-modal {
+        padding: 0;
+    }
+    .project-modal-container {
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+    .project-modal-body {
+        padding: 1.5rem 1rem;
+    }
 }
 
 .project-header {

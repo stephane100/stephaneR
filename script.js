@@ -221,25 +221,53 @@ document.querySelectorAll('a, button, .btn').forEach(el => {
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     
-    // Toggle détails des projets
+    // Affichage des détails projet en modal
+    const projectModal = document.getElementById('project-modal');
+    const projectModalBody = document.getElementById('project-modal-body');
+    const projectModalClose = document.querySelector('.project-modal-close');
+    const projectModalOverlay = document.querySelector('.project-modal-overlay');
+
+    function openProjectModal(projectCard) {
+        if (!projectModal || !projectModalBody) return;
+        const details = projectCard.querySelector('.project-details');
+        const header = projectCard.querySelector('.project-header');
+        if (!details) return;
+
+        projectModalBody.innerHTML = '';
+        if (header) {
+            const headerClone = header.cloneNode(true);
+            projectModalBody.appendChild(headerClone);
+        }
+        const detailsClone = details.cloneNode(true);
+        detailsClone.style.display = 'block';
+        projectModalBody.appendChild(detailsClone);
+
+        projectModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        if (!projectModal) return;
+        projectModal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            if (projectModalBody) projectModalBody.innerHTML = '';
+        }, 300);
+    }
+
     document.querySelectorAll('.btn-toggle-details').forEach(button => {
         button.addEventListener('click', function() {
             const projectCard = this.closest('.project-card');
-            const projectDetails = projectCard.querySelector('.project-details');
-            const toggleText = this.querySelector('.toggle-text');
-            
-            projectCard.classList.toggle('expanded');
-            
-            if (projectCard.classList.contains('expanded')) {
-                projectDetails.style.display = 'block';
-                toggleText.textContent = 'Masquer détails';
-            } else {
-                setTimeout(() => {
-                    projectDetails.style.display = 'none';
-                }, 300);
-                toggleText.textContent = 'Voir détails';
-            }
+            if (projectCard) openProjectModal(projectCard);
         });
+    });
+
+    if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
+    if (projectModalOverlay) projectModalOverlay.addEventListener('click', closeProjectModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && projectModal && projectModal.classList.contains('open')) {
+            closeProjectModal();
+        }
     });
     
     // Ajouter les styles pour le curseur personnalisé
