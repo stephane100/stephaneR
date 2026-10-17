@@ -269,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
             closeProjectModal();
         }
     });
+
+    // Initialisation de la section Solutions d'automatisation IA
+    renderAutomationCases();
+    initAutomationModal();
     
     // Ajouter les styles pour le curseur personnalisé
     const style = document.createElement('style');
@@ -328,6 +332,221 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 500);
 });
+
+// ===== Section Solutions d'automatisation IA =====
+function renderAutomationCases() {
+    if (typeof AUTOMATION_CASES === 'undefined') return;
+
+    const container = document.getElementById('automation-cases');
+    if (!container) return;
+
+    container.innerHTML = AUTOMATION_CASES.map((useCase, index) => {
+        const benefitsHtml = useCase.benefits.map(b => `
+            <div class="automation-card-benefit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>${b}</span>
+            </div>
+        `).join('');
+
+        return `
+            <article class="automation-card fade-in" data-aos="fade-up" data-automation-id="${useCase.id}" style="animation-delay: ${index * 100}ms">
+                <div class="automation-card-icon" aria-hidden="true">
+                    ${useCase.icon}
+                </div>
+                <span class="automation-card-sector">${useCase.sector}</span>
+                <h3>${useCase.title}</h3>
+                <p class="automation-card-description">${useCase.shortDescription}</p>
+                <div class="automation-card-benefits">
+                    ${benefitsHtml}
+                </div>
+                <button class="automation-card-btn" data-automation-id="${useCase.id}" aria-label="Voir le fonctionnement de ${useCase.title}">
+                    Voir le fonctionnement
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </article>
+        `;
+    }).join('');
+
+    // Observer les nouvelles cartes pour les animations au scroll
+    if (typeof observer !== 'undefined') {
+        document.querySelectorAll('.automation-card').forEach(card => {
+            observer.observe(card);
+        });
+    }
+}
+
+function openAutomationModal(useCaseId) {
+    if (typeof AUTOMATION_CASES === 'undefined' || typeof AUTOMATION_TECHNOLOGIES === 'undefined') return;
+
+    const useCase = AUTOMATION_CASES.find(c => c.id === useCaseId);
+    if (!useCase) return;
+
+    const modal = document.getElementById('automation-modal');
+    const body = document.getElementById('automation-modal-body');
+    if (!modal || !body) return;
+
+    const beforeList = useCase.before.map(step => `<li>${step}</li>`).join('');
+    const afterList = useCase.after.map(step => `<li>${step}</li>`).join('');
+
+    const roi = useCase.roi;
+    const roiHtml = `
+        <div class="automation-roi-card">
+            <div class="value">${roi.timePerWeek}</div>
+            <div class="label">Temps économisé par semaine</div>
+        </div>
+        <div class="automation-roi-card">
+            <div class="value">${roi.timePerMonth}</div>
+            <div class="label">Temps économisé par mois</div>
+        </div>
+        <div class="automation-roi-card">
+            <div class="value">${roi.errorReduction}</div>
+            <div class="label">Réduction des erreurs</div>
+        </div>
+        <div class="automation-roi-card">
+            <div class="value">${roi.payback}</div>
+            <div class="label">Retour sur investissement</div>
+        </div>
+    `;
+
+    const techHtml = useCase.technologies.map(tech => {
+        const techData = AUTOMATION_TECHNOLOGIES[tech] || { name: tech, color: '#999' };
+        return `
+            <div class="automation-tech-item">
+                <span class="automation-tech-dot" style="background-color: ${techData.color}"></span>
+                <span>${techData.name}</span>
+            </div>
+        `;
+    }).join('');
+
+    body.innerHTML = `
+        <div class="automation-detail-header">
+            <div class="automation-card-icon" aria-hidden="true">
+                ${useCase.icon}
+            </div>
+            <div class="automation-detail-title">
+                <span class="automation-card-sector">${useCase.sector}</span>
+                <h3 id="automation-modal-title">${useCase.title}</h3>
+            </div>
+        </div>
+
+        <div class="automation-detail-block">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Le problème
+            </h4>
+            <p>${useCase.problem}</p>
+        </div>
+
+        <div class="automation-detail-block">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Avant / Après
+            </h4>
+            <div class="automation-timeline-grid">
+                <div class="automation-timeline before">
+                    <h5>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                        Avant
+                    </h5>
+                    <ul>${beforeList}</ul>
+                </div>
+                <div class="automation-timeline after">
+                    <h5>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Après
+                    </h5>
+                    <ul>${afterList}</ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="automation-detail-block">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                Workflow
+            </h4>
+            <div class="automation-workflow">
+                <div class="automation-workflow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <p>Capture d'écran du workflow n8n à ajouter ici</p>
+                <button class="automation-workflow-btn" disabled>
+                    Voir le workflow
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="automation-detail-block">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                ROI
+            </h4>
+            <div class="automation-roi">
+                ${roiHtml}
+            </div>
+        </div>
+
+        <div class="automation-detail-block">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Technologies utilisées
+            </h4>
+            <div class="automation-tech-list">
+                ${techHtml}
+            </div>
+        </div>
+
+        <div class="automation-detail-block" style="text-align: center; margin-bottom: 0;">
+            <a href="#contact" class="btn btn-primary automation-modal-close-link">Discuter de mon projet</a>
+        </div>
+    `;
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Fermer la modal au clic sur les liens internes
+    body.querySelectorAll('.automation-modal-close-link').forEach(link => {
+        link.addEventListener('click', closeAutomationModal);
+    });
+}
+
+function closeAutomationModal() {
+    const modal = document.getElementById('automation-modal');
+    const body = document.getElementById('automation-modal-body');
+    if (!modal) return;
+
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (body) {
+        setTimeout(() => {
+            body.innerHTML = '';
+        }, 300);
+    }
+}
+
+function initAutomationModal() {
+    const modal = document.getElementById('automation-modal');
+    const closeBtn = document.querySelector('.automation-modal-close');
+    const overlay = document.querySelector('.automation-modal-overlay');
+    if (!modal) return;
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.automation-card-btn');
+        if (btn) {
+            const id = btn.getAttribute('data-automation-id');
+            if (id) openAutomationModal(id);
+        }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeAutomationModal);
+    if (overlay) overlay.addEventListener('click', closeAutomationModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+            closeAutomationModal();
+        }
+    });
+}
 
 // ===== Effet de compteur pour les statistiques (si ajouté) =====
 function animateCounter(element, target, duration = 2000) {
