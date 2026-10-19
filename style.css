@@ -791,7 +791,8 @@ ul {
     box-shadow: 0 5px 20px rgba(61, 220, 151, 0.3);
 }
 
-.project-card.is-hidden {
+.project-card.is-hidden,
+#projets .project-card.is-hidden {
     display: none;
 }
 
