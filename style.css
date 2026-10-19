@@ -1832,7 +1832,7 @@ ul {
 /* ===== Testimonials ===== */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
 }
 
@@ -2836,4 +2836,19 @@ ul {
     #projets .project-title-group h3 {
         font-size: 1.1rem;
     }
+}
+
+/* ===== Parcours ===== */
+.parcours-subtitle {
+    font-size: 1.4rem;
+    margin: 3rem 0 2rem;
+    color: var(--text-primary);
+}
+
+.parcours-subtitle:first-of-type {
+    margin-top: 1rem;
+}
+
+.education-icon {
+    color: var(--accent);
 }
